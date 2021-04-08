@@ -1,0 +1,56 @@
+﻿@model Calc.Models.Calculator
+
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewBag.Title = "Index";
+
+}
+<html>
+<head>
+
+</head>
+<body>
+    <h2>Calculator</h2>
+
+    <div class="row">
+        @using (Html.BeginForm("Index", "calculator", FormMethod.Post))
+        {
+
+            <div class="form-group">
+                <label for="num1">First Number</label>
+                <input type="text" class="form-control" name="num1" value="@Model.num1" />
+            </div>
+
+            <div class="form-group">
+                <label for="num2">Second Number</label>
+                <input type="text" class="form-control" name="num2" value="@Model.num2" />
+            </div>
+
+            <div class="form-group">
+                <label for="sum">Result</label>
+                <input type="text" class="form-control" name="sum" value="@Model.sum" />
+            </div>
+
+            <button type="submit" class="btn btn-info" id="plus" value="plus" name="symbol">+</button>
+            <button type="submit" class="btn btn-info" id="minus" value="minus" name="symbol">-</button>
+            <button type="submit" class="btn btn-info" id="times" value="times" name="symbol">x</button>
+            <button type="submit" class="btn btn-info" id="divided" value="divided" name="symbol">÷</button>
+
+
+        }
+    </div>
+    <div class="row">
+        @if (ViewBag.history != null)
+        {
+            @foreach (History his in (List<History>)ViewBag.history)
+            {
+        <div class="col-12">
+            <p>@his.His</p><br>
+        </div>
+            }
+        }
+
+    </div>
+</body>
+</html>
+
